@@ -4,7 +4,7 @@ import { Keyboard } from "./components/keyboard";
 
 export default function Home() {
   return (
-    <Box minH={"100vh"}>
+    <Box>
       <Words />
       <Keyboard />
     </Box>
