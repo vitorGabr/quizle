@@ -1,12 +1,20 @@
 "use client";
 
-import { Toaster } from "sonner";
+import { Toaster } from "react-hot-toast";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-     <>
-      <Toaster />
-     {children}
-     </>
+    <>
+      <Toaster
+        toastOptions={{
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+        position="top-center"
+      />
+      {children}
+    </>
   );
 }

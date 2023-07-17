@@ -1,22 +1,27 @@
 "use client";
 
 import { Box, HStack, VStack } from "@styled-system/jsx";
-import { Word } from "./word";
-import { useWord } from "@/contexts/word-provider";
+import { useWords } from "@/contexts/words-provider";
+import { Letter } from "./letter";
 
 export function Words() {
-  const { words,column,index } = useWord();
+  const { words, matriz, onChangeMatriz } = useWords();
   return (
     <Box mx={"auto"}>
       <VStack gap={2} justifyContent={"center"} alignItems={"center"}>
         {[...Array(5)].map((_, i) => {
-          return (  <HStack gap={2} key={i}>
+          return (
+            <HStack gap={2} key={i}>
               {[...Array(4)].map((_, j) => (
-                <Word
+                <Letter
                   key={j}
-                  selected={column === i && index === j}
-                  word={words[i]?.[j] || { letter: "", status: "unchecked" }}
-                  onClick={() => {}}
+                  selected={matriz.column === i && matriz.row === j}
+                  letter={words[i]?.[j] || { key: "", status: "unchecked" }}
+                  onClick={() =>
+                    onChangeMatriz({
+                      row: j,
+                    })
+                  }
                 />
               ))}
             </HStack>

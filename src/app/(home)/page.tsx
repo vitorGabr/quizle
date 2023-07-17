@@ -1,13 +1,12 @@
 import { Box } from "@styled-system/jsx";
 import { Words } from "./components/words";
-import { WordProvider } from "../../contexts/word-provider";
+import { Keyboard } from "./components/keyboard";
 
 export default function Home() {
   return (
-    <Box w={"100vw"} minH={"100vh"}>
-      <WordProvider>
-        <Words />
-      </WordProvider>
+    <Box minH={"100vh"}>
+      <Words />
+      <Keyboard />
     </Box>
   );
 }
