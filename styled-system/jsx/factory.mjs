@@ -1,42 +1,56 @@
 import { createElement, forwardRef, useMemo } from 'react'
-import { css, cx, cva, assignCss } from '../css/index.mjs';
+import { css, cx, cva } from '../css/index.mjs';
 import { splitProps, normalizeHTMLProps } from '../helpers.mjs';
 import { isCssProperty } from './is-valid-prop.mjs';
 
-function styledFn(Dynamic, configOrCva = {}) {
-  const cvaFn = configOrCva.__cva__ || configOrCva.__recipe__ ? configOrCva : cva(configOrCva)
-  
-  const StyledComponent = forwardRef(function StyledComponent(props, ref) {
-    const { as: Element = Dynamic, ...restProps } = props
+const defaultShouldForwardProp = (prop, variantKeys) => !variantKeys.includes(prop) && !isCssProperty(prop)
 
-    const [variantProps, styleProps, htmlProps, elementProps] = useMemo(() => {
-      return splitProps(restProps, cvaFn.variantKeys, isCssProperty, normalizeHTMLProps.keys)
-    }, [restProps])
+function styledFn(Dynamic, configOrCva = {}, options = {}) {
+  const cvaFn = configOrCva.__cva__ || configOrCva.__recipe__ ? configOrCva : cva(configOrCva)
+
+  const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
+  const shouldForwardProp = (prop) => forwardFn(prop, cvaFn.variantKeys)
+  
+  const defaultProps = Object.assign(
+    options.dataAttr && configOrCva.__name__ ? { 'data-recipe': configOrCva.__name__ } : {},
+    options.defaultProps,
+  )
+
+  const StyledComponent = /* @__PURE__ */ forwardRef(function StyledComponent(props, ref) {
+    const { as: Element = Dynamic, children, ...restProps } = props
+
+    const combinedProps = useMemo(() => Object.assign({}, defaultProps, restProps), [restProps])
+
+    const [forwardedProps, variantProps, styleProps, htmlProps, elementProps] = useMemo(() => {
+      return splitProps(combinedProps, shouldForwardProp, cvaFn.variantKeys, isCssProperty, normalizeHTMLProps.keys)
+    }, [combinedProps])
 
     function recipeClass() {
       const { css: cssStyles, ...propStyles } = styleProps
-      const styles = assignCss(propStyles, cssStyles)
-      return cx(cvaFn(variantProps), css(styles), elementProps.className)
+      const compoundVariantStyles = cvaFn.__getCompoundVariantCss__?.(variantProps);
+      return cx(cvaFn(variantProps, false), css(compoundVariantStyles, propStyles, cssStyles), combinedProps.className)
     }
-    
+
     function cvaClass() {
       const { css: cssStyles, ...propStyles } = styleProps
-      const cvaStyles = cvaFn.resolve(variantProps)
-      const styles = assignCss(cvaStyles, propStyles, cssStyles)
-      return cx(css(styles), elementProps.className)
+      const cvaStyles = cvaFn.raw(variantProps)
+      return cx(css(cvaStyles, propStyles, cssStyles), combinedProps.className)
     }
 
     const classes = configOrCva.__recipe__ ? recipeClass : cvaClass
 
     return createElement(Element, {
       ref,
+      ...forwardedProps,
       ...elementProps,
       ...normalizeHTMLProps(htmlProps),
+      children,
       className: classes(),
     })
   })
-  
-  StyledComponent.displayName = `styled.${Dynamic}`
+
+  const name = (typeof Dynamic === 'string' ? Dynamic : Dynamic.displayName || Dynamic.name) || 'Component'
+  StyledComponent.displayName = `styled.${name}`
   return StyledComponent
 }
 
@@ -56,4 +70,4 @@ function createJsxFactory() {
   })
 }
 
-export const styled = createJsxFactory()
+export const styled = /* @__PURE__ */ createJsxFactory()

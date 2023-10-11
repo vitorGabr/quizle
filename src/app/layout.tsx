@@ -1,13 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Providers } from "./providers";
-import utc from "dayjs/plugin/utc";
-import dayjs from "dayjs";
-import { css, cx } from "@styled-system/css";
-import { Navbar } from "@/components/navbar";
-
-dayjs.extend(utc);
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,17 +16,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body
-        className={cx(
-          css({
-            bg: "black",
-          }),
-          inter.className
-        )}
-      >
-        <Navbar />
-        <Providers>{children}</Providers>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

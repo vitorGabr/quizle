@@ -1672,135 +1672,135 @@ const tokens = {
     "variable": "var(--dgHGKE)"
   },
   "spacing.-1": {
-    "value": "calc(var(--spacing-1) * -1)",
+    "value": "calc(var(--dacYEG) * -1)",
     "variable": "var(--dacYEG)"
   },
   "spacing.-2": {
-    "value": "calc(var(--spacing-2) * -1)",
+    "value": "calc(var(--ebuyxV) * -1)",
     "variable": "var(--ebuyxV)"
   },
   "spacing.-3": {
-    "value": "calc(var(--spacing-3) * -1)",
+    "value": "calc(var(--bYDCFo) * -1)",
     "variable": "var(--bYDCFo)"
   },
   "spacing.-4": {
-    "value": "calc(var(--spacing-4) * -1)",
+    "value": "calc(var(--hIimNX) * -1)",
     "variable": "var(--hIimNX)"
   },
   "spacing.-5": {
-    "value": "calc(var(--spacing-5) * -1)",
+    "value": "calc(var(--fFrqVq) * -1)",
     "variable": "var(--fFrqVq)"
   },
   "spacing.-6": {
-    "value": "calc(var(--spacing-6) * -1)",
+    "value": "calc(var(--gGIQOF) * -1)",
     "variable": "var(--gGIQOF)"
   },
   "spacing.-7": {
-    "value": "calc(var(--spacing-7) * -1)",
+    "value": "calc(var(--eDRUVY) * -1)",
     "variable": "var(--eDRUVY)"
   },
   "spacing.-8": {
-    "value": "calc(var(--spacing-8) * -1)",
+    "value": "calc(var(--flZesP) * -1)",
     "variable": "var(--flZesP)"
   },
   "spacing.-9": {
-    "value": "calc(var(--spacing-9) * -1)",
+    "value": "calc(var(--djiiAi) * -1)",
     "variable": "var(--djiiAi)"
   },
   "spacing.-10": {
-    "value": "calc(var(--spacing-10) * -1)",
+    "value": "calc(var(--ieMJEa) * -1)",
     "variable": "var(--ieMJEa)"
   },
   "spacing.-11": {
-    "value": "calc(var(--spacing-11) * -1)",
+    "value": "calc(var(--cBFxYr) * -1)",
     "variable": "var(--cBFxYr)"
   },
   "spacing.-12": {
-    "value": "calc(var(--spacing-12) * -1)",
+    "value": "calc(var(--uyqLg) * -1)",
     "variable": "var(--uyqLg)"
   },
   "spacing.-14": {
-    "value": "calc(var(--spacing-14) * -1)",
+    "value": "calc(var(--hXmVPi) * -1)",
     "variable": "var(--hXmVPi)"
   },
   "spacing.-16": {
-    "value": "calc(var(--spacing-16) * -1)",
+    "value": "calc(var(--mYCWo) * -1)",
     "variable": "var(--mYCWo)"
   },
   "spacing.-20": {
-    "value": "calc(var(--spacing-20) * -1)",
+    "value": "calc(var(--jgejxp) * -1)",
     "variable": "var(--jgejxp)"
   },
   "spacing.-24": {
-    "value": "calc(var(--spacing-24) * -1)",
+    "value": "calc(var(--iYEvIx) * -1)",
     "variable": "var(--iYEvIx)"
   },
   "spacing.-28": {
-    "value": "calc(var(--spacing-28) * -1)",
+    "value": "calc(var(--dzpWeZ) * -1)",
     "variable": "var(--dzpWeZ)"
   },
   "spacing.-32": {
-    "value": "calc(var(--spacing-32) * -1)",
+    "value": "calc(var(--fifqnK) * -1)",
     "variable": "var(--fifqnK)"
   },
   "spacing.-36": {
-    "value": "calc(var(--spacing-36) * -1)",
+    "value": "calc(var(--faFCyS) * -1)",
     "variable": "var(--faFCyS)"
   },
   "spacing.-40": {
-    "value": "calc(var(--spacing-40) * -1)",
+    "value": "calc(var(--bxwoov) * -1)",
     "variable": "var(--bxwoov)"
   },
   "spacing.-44": {
-    "value": "calc(var(--spacing-44) * -1)",
+    "value": "calc(var(--huPzrf) * -1)",
     "variable": "var(--huPzrf)"
   },
   "spacing.-48": {
-    "value": "calc(var(--spacing-48) * -1)",
+    "value": "calc(var(--hgdKvb) * -1)",
     "variable": "var(--hgdKvb)"
   },
   "spacing.-52": {
-    "value": "calc(var(--spacing-52) * -1)",
+    "value": "calc(var(--cZMJbQ) * -1)",
     "variable": "var(--cZMJbQ)"
   },
   "spacing.-56": {
-    "value": "calc(var(--spacing-56) * -1)",
+    "value": "calc(var(--iXfUeA) * -1)",
     "variable": "var(--iXfUeA)"
   },
   "spacing.-60": {
-    "value": "calc(var(--spacing-60) * -1)",
+    "value": "calc(var(--vWSpd) * -1)",
     "variable": "var(--vWSpd)"
   },
   "spacing.-64": {
-    "value": "calc(var(--spacing-64) * -1)",
+    "value": "calc(var(--gtqdrN) * -1)",
     "variable": "var(--gtqdrN)"
   },
   "spacing.-72": {
-    "value": "calc(var(--spacing-72) * -1)",
+    "value": "calc(var(--hNtIEu) * -1)",
     "variable": "var(--hNtIEu)"
   },
   "spacing.-80": {
-    "value": "calc(var(--spacing-80) * -1)",
+    "value": "calc(var(--kqIPsj) * -1)",
     "variable": "var(--kqIPsj)"
   },
   "spacing.-96": {
-    "value": "calc(var(--spacing-96) * -1)",
+    "value": "calc(var(--wdMRQ) * -1)",
     "variable": "var(--wdMRQ)"
   },
   "spacing.-0.5": {
-    "value": "calc(var(--spacing-0\\.5) * -1)",
+    "value": "calc(var(--gEfgCY) * -1)",
     "variable": "var(--gEfgCY)"
   },
   "spacing.-1.5": {
-    "value": "calc(var(--spacing-1\\.5) * -1)",
+    "value": "calc(var(--jJIQbV) * -1)",
     "variable": "var(--jJIQbV)"
   },
   "spacing.-2.5": {
-    "value": "calc(var(--spacing-2\\.5) * -1)",
+    "value": "calc(var(--cqwGG) * -1)",
     "variable": "var(--cqwGG)"
   },
   "spacing.-3.5": {
-    "value": "calc(var(--spacing-3\\.5) * -1)",
+    "value": "calc(var(--dhUgfD) * -1)",
     "variable": "var(--dhUgfD)"
   },
   "colors.colorPalette.50": {
