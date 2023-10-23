@@ -8,10 +8,10 @@ export type Status = "correct" | "incorrect" | "unanswered";
 export type Word = {
   letter: string;
   status: Status;
-}[];
+};
 
 type Props = {
-  words: Word[];
+  words: Word[][];
   handleKeyPress: (event: KeyboardEvent) => void;
 };
 
@@ -27,7 +27,7 @@ export function WordsProvider({
   initialWord?: string;
 }) {
   const [typedWord, setTypedWord] = useState<string>("");
-  const [words, setWords] = useState<Word[]>([]);
+  const [words, setWords] = useState<Word[][]>([]);
 
   function handleKeyPress(event: KeyboardEvent) {
     if (event.key === "Backspace") {
