@@ -8,6 +8,17 @@ export default defineConfig({
   ],
   exclude: [],
   jsxFramework: "react",
-  hash: true,
+  outExtension: "js",
+  globalCss: {
+    "html, body": {
+      margin: 0,
+      padding: 0,
+      boxSizing: "border-box",
+    },
+    body: {
+      backgroundColor: "black",
+      color: "white",
+    },
+  },
   outdir: "styled-system",
 });

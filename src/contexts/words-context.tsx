@@ -1,7 +1,7 @@
 "use client";
 
 import { validateWord } from "@/functions/validate-word";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export type Status = "correct" | "incorrect" | "unanswered";
 
@@ -61,3 +61,11 @@ export function WordsProvider({
     </WordsContext.Provider>
   );
 }
+
+export const useWords = () => {
+  const context = useContext(WordsContext);
+  if (context === undefined) {
+    throw new Error("useWords must be used within a WordsProvider");
+  }
+  return context;
+};

@@ -1,5 +1,5 @@
 import { Word } from "@/contexts/words-context";
-import { styled } from "styled-system/jsx";
+import { Box } from "styled-system/jsx";
 
 export function Word({
   letter,
@@ -9,7 +9,13 @@ export function Word({
   status: "correct" | "incorrect" | "unanswered";
 }) {
   return (
-    <styled.p
+    <Box
+      borderWidth="1px"
+      borderColor={"neutral.800"}
+      bgColor={"neutral.950"}
+      rounded="lg"
+      w="12"
+      h="12"
       color={
         status === "correct"
           ? "green.500"
@@ -21,6 +27,6 @@ export function Word({
       fontWeight="bold"
     >
       {letter}
-    </styled.p>
+    </Box>
   );
 }
