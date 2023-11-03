@@ -1,5 +1,6 @@
+import { Keys } from "@/components/keys";
 import { Words } from "@/components/words";
-import { Box, Stack, styled } from "styled-system/jsx";
+import { Stack, styled } from "styled-system/jsx";
 
 export default function Home() {
   return (
@@ -7,7 +8,10 @@ export default function Home() {
       <styled.h1 fontSize="4xl" fontWeight="bold" textAlign="center">
         QUIZLE
       </styled.h1>
-      <Words />
+      <Stack gap={"10"}>
+        <Words />
+        <Keys />
+      </Stack>
     </Stack>
   );
 }

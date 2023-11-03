@@ -18,7 +18,7 @@ export default async function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${inter.variable}`}>
-        <Providers correctedWord="test">{children}</Providers>
+        <Providers correctedWord="teste">{children}</Providers>
       </body>
     </html>
   );
