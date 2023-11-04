@@ -20,5 +20,22 @@ export default defineConfig({
       color: "white",
     },
   },
+  theme: {
+    semanticTokens: {
+      colors: {
+        letterStatus: {
+          correct: {
+            value: "#34e54d",
+          },
+          incorrect: {
+            value: "{colors.neutral.500}",
+          },
+          unanswered: {
+            value: "#fdf00e",
+          },
+        },
+      },
+    },
+  },
   outdir: "styled-system",
 });

@@ -129,17 +129,14 @@ export function WordsProvider({
     return wordValidation;
   }
 
-  function changePosition(col: number) {
-    setCurrentPosition((prev) => ({ ...prev, col }));
-  }
-
   return (
     <WordsContext.Provider
       value={{
         words,
         gameStatus,
         currentPosition,
-        changePosition: (position) => changePosition(position.col),
+        changePosition: (position) =>
+          setCurrentPosition((prev) => ({ ...prev, col: position.col })),
         handleKeyPress,
       }}
     >

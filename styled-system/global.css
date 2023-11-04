@@ -33,4 +33,15 @@
     --scale-x: 1;
     --scale-y: 1
     }
+
+  html, body {
+    margin: var(--spacing-0);
+    padding: var(--spacing-0);
+    box-sizing: border-box
+    }
+
+  body {
+    background-color: var(--colors-black);
+    color: var(--colors-white)
+    }
 }

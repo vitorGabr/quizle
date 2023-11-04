@@ -417,7 +417,10 @@
   --breakpoints-md: 768px;
   --breakpoints-lg: 1024px;
   --breakpoints-xl: 1280px;
-  --breakpoints-2xl: 1536px
+  --breakpoints-2xl: 1536px;
+  --colors-letter-status-correct: #34e54d;
+  --colors-letter-status-incorrect: var(--colors-neutral-500);
+  --colors-letter-status-unanswered: #fdf00e
 }
   }
   

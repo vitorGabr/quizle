@@ -17,11 +17,11 @@ export function Words() {
   }, [currentPosition, gameStatus]);
 
   return (
-    <Center w="full">
-      <Stack gap={"1"}>
+    <Center w="full" flex="1">
+      <Stack gap={"1.5"}>
         {words.map((row, rowIdx) => {
           return (
-            <Flex gap={"1"} key={Math.random()}>
+            <Flex gap={"1.5"} key={Math.random()}>
               {row.map((word, colIdx) => {
                 const selected =
                   rowIdx === currentPosition.row &&
@@ -49,10 +49,10 @@ export function Words() {
 
 const Letter = styled(Center, {
   base: {
-    borderWidth: "1px",
+    borderWidth: "2px",
     borderColor: "neutral.700",
     bgColor: "transparent",
-    rounded: "lg",
+    rounded: "xl",
     w: "12",
     h: "12",
     color: "white",
@@ -60,19 +60,32 @@ const Letter = styled(Center, {
     fontWeight: "bold",
     _selected: {
       borderWidth: "2px",
-      borderColor: "white",
+      borderColor: "neutral.200",
     },
+    cursor: "pointer",
+    userSelect: "none",
   },
   variants: {
     status: {
       correct: {
-        bgColor: "green.700",
+        borderColor: "letterStatus.correct",
+        _selected: {
+          borderColor: "letterStatus.correct",
+        },
       },
       incorrect: {
-        bgColor: "red.700",
+        bgColor: "letterStatus.incorrect",
+        borderColor: "letterStatus.incorrect",
+        _selected: {
+          borderColor: "letterStatus.incorrect",
+        },
       },
       unanswered: {
-        bgColor: "yellow.700",
+        borderColor: "letterStatus.unanswered",
+        borderStyle: "dashed",
+        _selected: {
+          borderColor: "letterStatus.unanswered",
+        },
       },
     } as {
       [key in Status]: SystemStyleObject;
