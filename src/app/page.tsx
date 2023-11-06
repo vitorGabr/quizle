@@ -1,7 +1,7 @@
-import { Keys } from "@/components/keys";
 import { Navbar } from "@/components/navbar";
 import { Words } from "@/components/words";
 import { Stack } from "styled-system/jsx";
+import { Keyboard } from "@/components/keyboard";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
     >
       <Navbar />
       <Words />
-      <Keys />
+      <Keyboard />
     </Stack>
   );
 }

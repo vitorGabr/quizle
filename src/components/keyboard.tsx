@@ -3,6 +3,7 @@
 import { useWords } from "@/contexts/word-context";
 import { Center, Flex, Stack, styled } from "styled-system/jsx";
 import { match } from "ts-pattern";
+import { Key } from "./ui/key";
 
 const keyboard = [
   ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -10,7 +11,7 @@ const keyboard = [
   ["z", "x", "c", "v", "b", "n", "m", "Enter"],
 ];
 
-export function Keys() {
+export function Keyboard() {
   const { handleKeyPress, state } = useWords();
 
   const { letters } = state;
@@ -63,65 +64,3 @@ export function Keys() {
     </Center>
   );
 }
-
-const Key = styled(Center, {
-  base: {
-    rounded: "lg",
-    h: "10",
-    color: "white",
-    fontSize: "md",
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    _selected: {
-      bgColor: "neutral.700",
-    },
-    _hover: {
-      bgColor: "neutral.700",
-    },
-    cursor: "pointer",
-    userSelect: "none",
-  },
-  variants: {
-    type: {
-      other: {
-        px: "2",
-        minW: {
-          base: "auto",
-          md: "10",
-        },
-      },
-      default: {
-        w: {
-          base: "full",
-          md: "10",
-        },
-      },
-    },
-    status: {
-      correct: {
-        bgColor: "letterStatus.correct",
-        color: "neutral.700",
-        _hover: {
-          bgColor: "letterStatus.correct",
-        },
-      },
-      incorrect: {
-        bgColor: "letterStatus.incorrect",
-      },
-      unanswered: {
-        bgColor: "letterStatus.unanswered",
-        color: "neutral.700",
-        _hover: {
-          bgColor: "letterStatus.unanswered",
-        },
-      },
-      disabled: {
-        bgColor: "neutral.700",
-      },
-    },
-  },
-  defaultVariants: {
-    type: "default",
-    status: "disabled",
-  },
-});

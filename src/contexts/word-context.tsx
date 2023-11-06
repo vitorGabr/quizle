@@ -1,5 +1,6 @@
 "use client";
 
+import { Demo } from "@/components/modal";
 import { validateWord } from "@/utils/game-utils";
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 
@@ -205,7 +206,10 @@ export function WordsProvider({
 
   return (
     <WordsContext.Provider value={{ state, dispatch, handleKeyPress }}>
-      {children}
+      <>
+        {children}
+        <Demo open={state.gameStatus !== "playing"} />
+      </>
     </WordsContext.Provider>
   );
 }

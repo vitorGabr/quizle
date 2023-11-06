@@ -17,25 +17,25 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let word = await prisma.word.findUnique({
-    where: {
-      date: dayjs().startOf("day").toISOString(),
-    },
-  });
+  // let word = await prisma.word.findUnique({
+  //   where: {
+  //     date: dayjs().startOf("day").toISOString(),
+  //   },
+  // });
 
-  if (!word) {
-    word = await prisma.word.findFirstOrThrow({
-      orderBy: {
-        date: "desc",
-      },
-      take: 1,
-    });
-  }
+  // if (!word) {
+  //   word = await prisma.word.findFirstOrThrow({
+  //     orderBy: {
+  //       date: "desc",
+  //     },
+  //     take: 1,
+  //   });
+  // }
 
   return (
     <html lang="pt-BR">
       <body className={`${body.variable}`}>
-        <Providers correctedWord={word?.word ?? "teste"}>{children}</Providers>
+        <Providers correctedWord={"teste"}>{children}</Providers>
       </body>
     </html>
   );

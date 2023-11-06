@@ -1,9 +1,24 @@
 import { LetterStatus, Word } from "@/contexts/word-context";
 
-export function validateWord(currentWordRow: string[], correctWord: string) {
+export function validateWord(
+  currentWordRow: string[],
+  correctWord: string
+): {
+  word: Word[];
+  win: boolean;
+} {
   const correctWordLetters = correctWord.split("");
   const wordValidation: Word[] = [];
-  let win = currentWordRow.join("") === correctWord;
+
+  if (currentWordRow.join("") === correctWord) {
+    return {
+      word: currentWordRow.map((letter) => ({
+        letter,
+        status: "correct",
+      })),
+      win: true,
+    };
+  }
 
   currentWordRow.forEach((letter, index) => {
     const correctPositionCount = currentWordRow.filter(
@@ -37,6 +52,6 @@ export function validateWord(currentWordRow: string[], correctWord: string) {
 
   return {
     word: wordValidation,
-    win,
+    win: false,
   };
 }

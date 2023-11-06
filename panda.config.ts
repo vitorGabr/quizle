@@ -1,3 +1,6 @@
+import { globalStyles } from "@/theme/global-styles";
+import { dialog } from "@/theme/recipes/dialog";
+import { semanticTokens } from "@/theme/semantic-tokens";
 import { defineConfig } from "@pandacss/dev";
 
 export default defineConfig({
@@ -9,32 +12,11 @@ export default defineConfig({
   exclude: [],
   jsxFramework: "react",
   outExtension: "js",
-  globalCss: {
-    "html, body": {
-      margin: 0,
-      padding: 0,
-      boxSizing: "border-box",
-    },
-    body: {
-      backgroundColor: "black",
-      color: "white",
-    },
-  },
+  globalCss: globalStyles,
   theme: {
-    semanticTokens: {
-      colors: {
-        letterStatus: {
-          correct: {
-            value: "#34e54d",
-          },
-          incorrect: {
-            value: "{colors.neutral.500}",
-          },
-          unanswered: {
-            value: "#fdf00e",
-          },
-        },
-      },
+    semanticTokens,
+    slotRecipes: {
+      dialog,
     },
   },
   outdir: "styled-system",
