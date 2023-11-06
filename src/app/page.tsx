@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/navbar";
 import { Keys } from "@/components/keys";
+import { Navbar } from "@/components/navbar";
 import { Words } from "@/components/words";
 import { Stack } from "styled-system/jsx";
 

@@ -1,20 +1,12 @@
 "use client";
 
 import { Center, Flex, Stack, styled } from "styled-system/jsx";
-import { useEffect } from "react";
-import { type Status, useWords } from "@/contexts/words";
 import { type SystemStyleObject } from "styled-system/types";
+import { useWords, LetterStatus } from "@/contexts/word-context";
 
 export function Words() {
-  const { words, currentPosition, changePosition, gameStatus, handleKeyPress } =
-    useWords();
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [currentPosition, gameStatus]);
+  const { state, dispatch } = useWords();
+  const { words, currentPosition } = state;
 
   return (
     <Center w="full" flex="1">
@@ -33,7 +25,12 @@ export function Words() {
                     key={Math.random()}
                     status={word.status}
                     data-selected={selected}
-                    onClick={() => changePosition({ col: colIdx })}
+                    onClick={() => {
+                      dispatch({
+                        type: "SET_CURRENT_POSITION",
+                        payload: { row: currentPosition.row, col: colIdx },
+                      });
+                    }}
                   >
                     {word.letter.toUpperCase()}
                   </Letter>
@@ -88,7 +85,7 @@ const Letter = styled(Center, {
         },
       },
     } as {
-      [key in Status]: SystemStyleObject;
+      [key in LetterStatus]: SystemStyleObject;
     },
   },
 });

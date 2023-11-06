@@ -1,6 +1,6 @@
 "use client";
 
-import { WordsProvider } from "@/contexts/words";
+import { WordsProvider } from "@/contexts/word-context";
 
 export function Providers({
   children,

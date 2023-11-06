@@ -1,8 +1,6 @@
 "use client";
 
-import { type Status, type Word, useWords } from "@/contexts/words";
-import { type SystemStyleObject } from "@pandacss/dev";
-import { useMemo } from "react";
+import { useWords } from "@/contexts/word-context";
 import { Center, Flex, Stack, styled } from "styled-system/jsx";
 import { match } from "ts-pattern";
 
@@ -12,41 +10,10 @@ const keyboard = [
   ["z", "x", "c", "v", "b", "n", "m", "Enter"],
 ];
 
-function sortAndRemoveDuplicates(words: Word[][]) {
-  const flatWords = words.flat().sort((a, b) => {
-    const statusOrder = {
-      correct: 1,
-      incorrect: 2,
-      unanswered: 3,
-    } as { [key in Status]: number };
-
-    const statusA = a.status ?? "unanswered";
-    const statusB = b.status ?? "unanswered";
-
-    if (statusOrder[statusA] < statusOrder[statusB]) {
-      return -1;
-    }
-    if (statusOrder[statusA] > statusOrder[statusB]) {
-      return 1;
-    }
-
-    return a.letter.localeCompare(b.letter);
-  });
-  const uniqueLettersSet = new Set();
-
-  return flatWords.filter((word) => {
-    if (uniqueLettersSet.has(word.letter)) {
-      return false;
-    }
-    uniqueLettersSet.add(word.letter);
-    return true;
-  });
-}
-
 export function Keys() {
-  const { handleKeyPress, words } = useWords();
+  const { handleKeyPress, state } = useWords();
 
-  const sortedWords = useMemo(() => sortAndRemoveDuplicates(words), [words]);
+  const { letters } = state;
 
   return (
     <Center
@@ -69,7 +36,7 @@ export function Keys() {
             >
               {row.map((key) => {
                 const k = key.toLowerCase();
-                const status = sortedWords.find(
+                const status = letters.find(
                   (word) => word.letter === k
                 )?.status;
 
@@ -99,7 +66,6 @@ export function Keys() {
 
 const Key = styled(Center, {
   base: {
-    bgColor: "neutral.700",
     rounded: "lg",
     h: "10",
     color: "white",
@@ -149,11 +115,13 @@ const Key = styled(Center, {
           bgColor: "letterStatus.unanswered",
         },
       },
-    } as {
-      [key in Status]: SystemStyleObject;
+      disabled: {
+        bgColor: "neutral.700",
+      },
     },
   },
   defaultVariants: {
     type: "default",
+    status: "disabled",
   },
 });
