@@ -2,15 +2,14 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Providers } from "./providers";
-import prisma from "@/lib/prisma";
-import dayjs from "dayjs";
 
-const body = Outfit({ subsets: ["latin"], variable: "--font-body" });
 export const revalidate = false;
 export const metadata: Metadata = {
   title: "Quizle",
   description: "Sua dose diária de palavras",
 };
+
+const body = Outfit({ subsets: ["latin"], variable: "--font-body" });
 
 export default async function RootLayout({
   children,

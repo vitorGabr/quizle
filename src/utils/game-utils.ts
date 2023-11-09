@@ -1,4 +1,5 @@
-import { LetterStatus, Word } from "@/contexts/word-context";
+import type { GameState, LetterStatus, Word } from "@/schemas/word-schema";
+import { getLocalStorage } from "./local-storage";
 
 export function validateWord(
   currentWordRow: string[],
@@ -53,5 +54,24 @@ export function validateWord(
   return {
     word: wordValidation,
     win: false,
+  };
+}
+
+export function initGameState(wordLenght: number): GameState {
+  const storage = getLocalStorage(new Date());
+  return {
+    gameStatus: storage?.gameStatus || "playing",
+    letters: storage?.letters || [],
+    currentPosition: storage?.currentPosition || { row: 0, col: 0 },
+    words:
+      storage?.words ||
+      Array.from(
+        { length: 6 },
+        () =>
+          Array.from({ length: wordLenght }, () => ({
+            letter: "",
+            status: "disabled",
+          })) as Word[]
+      ),
   };
 }

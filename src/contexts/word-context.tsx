@@ -1,23 +1,15 @@
 "use client";
 
 import { Demo } from "@/components/modal";
-import { validateWord } from "@/utils/game-utils";
+import {
+  GameState,
+  GameStatus,
+  LetterStatus,
+  Word,
+} from "@/schemas/word-schema";
+import { initGameState, validateWord } from "@/utils/game-utils";
+import { setLocalStorage } from "@/utils/local-storage";
 import React, { createContext, useContext, useEffect, useReducer } from "react";
-
-export type LetterStatus = "correct" | "incorrect" | "unanswered" | "disabled";
-export type GameStatus = "win" | "lose" | "playing";
-
-export type Word = {
-  letter: string;
-  status: LetterStatus;
-};
-
-type GameState = {
-  gameStatus: GameStatus;
-  letters: Word[];
-  currentPosition: { row: number; col: number };
-  words: Word[][];
-};
 
 type Action =
   | { type: "SET_GAME_STATUS"; payload: GameStatus }
@@ -25,19 +17,19 @@ type Action =
   | { type: "SET_CURRENT_POSITION"; payload: GameState["currentPosition"] }
   | { type: "SET_WORDS"; payload: Word[][] };
 
-const initialGameState: GameState = {
-  gameStatus: "playing",
-  letters: [],
-  currentPosition: { row: 0, col: 0 },
-  words: [],
-};
+const STATUS_ORDER: LetterStatus[] = [
+  "disabled",
+  "incorrect",
+  "unanswered",
+  "correct",
+];
 
 const WordsContext = createContext<{
   state: GameState;
   dispatch: React.Dispatch<Action>;
   handleKeyPress: (event: KeyboardEvent | { key: string }) => void;
 }>({
-  state: initialGameState,
+  state: {} as GameState,
   dispatch: () => null,
   handleKeyPress: () => null,
 });
@@ -57,13 +49,6 @@ function wordsReducer(state: GameState, action: Action): GameState {
   }
 }
 
-const statusOrder: LetterStatus[] = [
-  "disabled",
-  "incorrect",
-  "unanswered",
-  "correct",
-];
-
 export function WordsProvider({
   children,
   correctWord,
@@ -73,17 +58,10 @@ export function WordsProvider({
 }) {
   const maxWordLength = correctWord.length;
 
-  const [state, dispatch] = useReducer(wordsReducer, {
-    ...initialGameState,
-    words: Array.from(
-      { length: 6 },
-      () =>
-        Array.from({ length: maxWordLength }, () => ({
-          letter: "",
-          status: "disabled",
-        })) as Word[]
-    ),
-  });
+  const [state, dispatch] = useReducer(
+    wordsReducer,
+    initGameState(maxWordLength)
+  );
 
   const handleKeyPress = (event: KeyboardEvent | { key: string }) => {
     const { currentPosition, letters } = state;
@@ -120,8 +98,8 @@ export function WordsProvider({
         const existingLetter = newLetters[existingLetterIndex];
         if (
           existingLetter &&
-          statusOrder.indexOf(l.status) >
-            statusOrder.indexOf(existingLetter.status)
+          STATUS_ORDER.indexOf(l.status) >
+            STATUS_ORDER.indexOf(existingLetter.status)
         ) {
           newLetters[existingLetterIndex] = l;
         }
@@ -133,11 +111,20 @@ export function WordsProvider({
       if (state.currentPosition.row === 5 && gameStatus === "playing") {
         gameStatus = "lose";
       }
+      const position = changePosition("next-row");
+      setLocalStorage({
+        data: {
+          words: newWords,
+          gameStatus,
+          letters: newLetters,
+          currentPosition: position,
+        },
+        date: new Date(),
+      });
       dispatch({
         type: "SET_LETTERS",
         payload: newLetters,
       });
-      changePosition("next-row");
     }
 
     if (["ArrowLeft", "ArrowRight"].includes(event.key)) {
@@ -163,38 +150,38 @@ export function WordsProvider({
   };
 
   function changePosition(type: "next-col" | "prev-col" | "next-row") {
+    let position = state.currentPosition;
     switch (type) {
       case "next-col":
         if (state.currentPosition.col < maxWordLength - 1) {
-          dispatch({
-            type: "SET_CURRENT_POSITION",
-            payload: {
-              ...state.currentPosition,
-              col: state.currentPosition.col + 1,
-            },
-          });
+          position = {
+            ...state.currentPosition,
+            col: state.currentPosition.col + 1,
+          };
         }
         break;
       case "prev-col":
         if (state.currentPosition.col > 0) {
-          dispatch({
-            type: "SET_CURRENT_POSITION",
-            payload: {
-              ...state.currentPosition,
-              col: state.currentPosition.col - 1,
-            },
-          });
+          position = {
+            ...state.currentPosition,
+            col: state.currentPosition.col - 1,
+          };
         }
         break;
       case "next-row":
         if (state.currentPosition.row < 5) {
-          dispatch({
-            type: "SET_CURRENT_POSITION",
-            payload: { col: 0, row: state.currentPosition.row + 1 },
-          });
+          position = {
+            col: 0,
+            row: state.currentPosition.row + 1,
+          };
         }
         break;
     }
+    dispatch({
+      type: "SET_CURRENT_POSITION",
+      payload: position,
+    });
+    return position;
   }
 
   useEffect(() => {

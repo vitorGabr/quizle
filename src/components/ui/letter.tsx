@@ -1,4 +1,4 @@
-import { LetterStatus } from "@/contexts/word-context";
+import { LetterStatus } from "@/schemas/word-schema";
 import { styled, Center } from "styled-system/jsx";
 import { SystemStyleObject } from "styled-system/types";
 

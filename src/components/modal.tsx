@@ -1,26 +1,35 @@
 import { Portal } from "@ark-ui/react";
-import { styled } from "styled-system/jsx";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogContainer,
-  DialogContent,
-  type DialogProps,
-} from "@/components/ui/dialog";
+import { XIcon } from "lucide-react";
+import { Stack, styled } from "styled-system/jsx";
+import { Dialog, DialogProps } from "./ui/dialog";
 
 export const Demo = (props: DialogProps) => {
   return (
-    <Dialog {...props}>
+    <Dialog.Root {...props}>
       <Portal>
-        <DialogBackdrop />
-        <DialogContainer>
-          <DialogContent>
-            <styled.div width="20vw" height="20vh">
-              asd
-            </styled.div>
-          </DialogContent>
-        </DialogContainer>
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Stack gap="8" p="6">
+              <Stack gap="1">
+                <Dialog.Title>Dialog Title</Dialog.Title>
+                <Dialog.Description>Dialog Description</Dialog.Description>
+              </Stack>
+              <Stack gap="3" direction="row" width="full">
+                <Dialog.CloseTrigger asChild>
+                  <styled.button width="full">Cancel</styled.button>
+                </Dialog.CloseTrigger>
+                <styled.button width="full">Confirm</styled.button>
+              </Stack>
+            </Stack>
+            <Dialog.CloseTrigger asChild position="absolute" top="2" right="2">
+              <styled.button aria-label="Close Dialog">
+                <XIcon />
+              </styled.button>
+            </Dialog.CloseTrigger>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Portal>
-    </Dialog>
+    </Dialog.Root>
   );
 };

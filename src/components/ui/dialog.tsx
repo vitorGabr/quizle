@@ -1,7 +1,7 @@
 import { createStyleContext } from "@/lib/style-context";
 import * as Ark from "@ark-ui/react/dialog";
 import { styled } from "styled-system/jsx";
-import { type DialogVariantProps, dialog } from "styled-system/recipes";
+import { dialog, type DialogVariantProps } from "styled-system/recipes";
 
 const { withProvider, withContext } = createStyleContext(dialog);
 
@@ -17,14 +17,14 @@ export const DialogCloseTrigger = withContext(
   styled(Ark.Dialog.CloseTrigger),
   "closeTrigger"
 );
-export const DialogContainer = withContext(
-  styled(Ark.Dialog.Container),
-  "container"
-);
 export const DialogContent = withContext(styled(Ark.Dialog.Content), "content");
 export const DialogDescription = withContext(
   styled(Ark.Dialog.Description),
   "description"
+);
+export const DialogPositioner = withContext(
+  styled(Ark.Dialog.Positioner),
+  "positioner"
 );
 export const DialogTitle = withContext(styled(Ark.Dialog.Title), "title");
 export const DialogTrigger = withContext(styled(Ark.Dialog.Trigger), "trigger");
@@ -33,7 +33,7 @@ export const Dialog = Object.assign(DialogRoot, {
   Root: DialogRoot,
   Backdrop: DialogBackdrop,
   CloseTrigger: DialogCloseTrigger,
-  Container: DialogContainer,
+  Positioner: DialogPositioner,
   Content: DialogContent,
   Description: DialogDescription,
   Title: DialogTitle,

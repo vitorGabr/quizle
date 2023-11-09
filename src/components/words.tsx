@@ -1,8 +1,7 @@
 "use client";
 
-import { Center, Flex, Stack, styled } from "styled-system/jsx";
-import { type SystemStyleObject } from "styled-system/types";
-import { useWords, LetterStatus } from "@/contexts/word-context";
+import { Center, Flex, Stack } from "styled-system/jsx";
+import { useWords } from "@/contexts/word-context";
 import { Letter } from "./ui/letter";
 
 export function Words() {
