@@ -58,10 +58,19 @@ export function WordsProvider({
 }) {
   const maxWordLength = correctWord.length;
 
-  const [state, dispatch] = useReducer(
-    wordsReducer,
-    initGameState(maxWordLength)
-  );
+  const [state, dispatch] = useReducer(wordsReducer, {
+    gameStatus: "playing",
+    letters: [],
+    currentPosition: { row: 0, col: 0 },
+    words: Array.from(
+      { length: 6 },
+      () =>
+        Array.from({ length: maxWordLength }, () => ({
+          letter: "",
+          status: "disabled",
+        })) as Word[]
+    ),
+  });
 
   const handleKeyPress = (event: KeyboardEvent | { key: string }) => {
     const { currentPosition, letters } = state;
@@ -183,6 +192,27 @@ export function WordsProvider({
     });
     return position;
   }
+
+  useEffect(() => {
+    const data = initGameState();
+    if (!data) return;
+    dispatch({
+      type: "SET_WORDS",
+      payload: data.words,
+    });
+    dispatch({
+      type: "SET_LETTERS",
+      payload: data.letters,
+    });
+    dispatch({
+      type: "SET_CURRENT_POSITION",
+      payload: data.currentPosition,
+    });
+    dispatch({
+      type: "SET_GAME_STATUS",
+      payload: data.gameStatus,
+    });
+  }, []);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);

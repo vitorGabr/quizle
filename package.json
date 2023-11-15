@@ -7,13 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "vitest"
+    "lint": "next lint"
   },
   "dependencies": {
     "@ark-ui/anatomy": "^1.0.0",
-    "@ark-ui/react": "^1.0.0",
-    "@prisma/client": "^5.5.2",
+    "@ark-ui/react": "^1.0.1",
+    "@supabase/ssr": "^0.0.10",
     "@types/node": "20.9.0",
     "@types/react": "18.2.37",
     "@types/react-dom": "18.2.15",
@@ -28,14 +27,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.18.0",
-    "@testing-library/jest-dom": "6.1.4",
-    "@testing-library/react": "^14.1.0",
-    "@testing-library/user-event": "14.5.1",
-    "@vitejs/plugin-react": "4.1.1",
-    "jsdom": "^22.1.0",
-    "prisma": "^5.5.2",
-    "typescript": "5.2.2",
-    "vitest": "^0.34.6"
+    "@pandacss/dev": "^0.18.2",
+    "typescript": "5.2.2"
   }
 }

@@ -57,21 +57,13 @@ export function validateWord(
   };
 }
 
-export function initGameState(wordLenght: number): GameState {
+export function initGameState(): GameState | null {
   const storage = getLocalStorage(new Date());
+  if (!storage) return null;
   return {
-    gameStatus: storage?.gameStatus || "playing",
-    letters: storage?.letters || [],
-    currentPosition: storage?.currentPosition || { row: 0, col: 0 },
-    words:
-      storage?.words ||
-      Array.from(
-        { length: 6 },
-        () =>
-          Array.from({ length: wordLenght }, () => ({
-            letter: "",
-            status: "disabled",
-          })) as Word[]
-      ),
+    gameStatus: storage.gameStatus,
+    letters: storage.letters,
+    currentPosition: storage.currentPosition,
+    words: storage.words,
   };
 }

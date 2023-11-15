@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Providers } from "./providers";
+import { supabase } from "@/lib/supabase";
+import { PropsWithChildren } from "react";
 
 export const revalidate = false;
 export const metadata: Metadata = {
@@ -9,32 +11,21 @@ export const metadata: Metadata = {
   description: "Sua dose diária de palavras",
 };
 
-const body = Outfit({ subsets: ["latin"], variable: "--font-body" });
+const body = Outfit({ subsets: ["latin"], variable: "--font-fallback" });
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // let word = await prisma.word.findUnique({
-  //   where: {
-  //     date: dayjs().startOf("day").toISOString(),
-  //   },
-  // });
+export default async function RootLayout({ children }: PropsWithChildren) {
+  const { data } = await supabase
+    .from("words")
+    .select("*")
+    .eq("date", new Date().toISOString())
+    .single();
 
-  // if (!word) {
-  //   word = await prisma.word.findFirstOrThrow({
-  //     orderBy: {
-  //       date: "desc",
-  //     },
-  //     take: 1,
-  //   });
-  // }
+  const word = data?.word || "teste";
 
   return (
     <html lang="pt-BR">
       <body className={`${body.variable}`}>
-        <Providers correctedWord={"teste"}>{children}</Providers>
+        <Providers correctedWord={word}>{children}</Providers>
       </body>
     </html>
   );
