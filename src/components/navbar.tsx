@@ -1,14 +1,27 @@
-import { styled } from "@styled-system/jsx";
-import { Content } from "./content";
+import { Info } from "lucide-react";
+import { Container, styled } from "styled-system/jsx";
 
 export function Navbar() {
   return (
-    <styled.nav py={5}>
-      <Content>
-        <styled.h1 color={"white"} fontSize={"2xl"}>
-          Desafio
+    <styled.nav w="100%">
+      <Container
+        display={"flex"}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Info />
+        <styled.h1
+          fontSize={{
+            base: "3xl",
+            md: "4xl",
+          }}
+          fontWeight="bold"
+          color="white"
+        >
+          Quizle
         </styled.h1>
-      </Content>
+        <Info />
+      </Container>
     </styled.nav>
   );
 }

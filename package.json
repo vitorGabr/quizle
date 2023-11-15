@@ -10,25 +10,24 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^5.0.0",
-    "@types/node": "20.4.2",
-    "@types/react": "18.2.15",
-    "@types/react-dom": "18.2.7",
-    "dayjs": "^1.11.9",
-    "eslint": "8.44.0",
-    "eslint-config-next": "13.4.10",
-    "ky": "^0.33.3",
-    "next": "13.4.10",
-    "openai": "^3.3.0",
+    "@ark-ui/anatomy": "^1.0.0",
+    "@ark-ui/react": "^1.0.1",
+    "@supabase/ssr": "^0.0.10",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "dayjs": "^1.11.10",
+    "eslint": "8.53.0",
+    "eslint-config-next": "14.0.2",
+    "lucide-react": "^0.292.0",
+    "next": "14.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hot-toast": "^2.4.1",
-    "ts-pattern": "^5.0.3"
+    "ts-pattern": "^5.0.5",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.6.0",
-    "prisma": "^5.0.0",
-    "supabase": "^1.77.9",
-    "typescript": "5.1.6"
+    "@pandacss/dev": "^0.18.2",
+    "typescript": "5.2.2"
   }
 }

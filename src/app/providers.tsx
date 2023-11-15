@@ -1,20 +1,13 @@
 "use client";
 
-import { Toaster } from "react-hot-toast";
+import { WordsProvider } from "@/contexts/word-context";
 
-export function Providers({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <Toaster
-        toastOptions={{
-          style: {
-            background: "#333",
-            color: "#fff",
-          },
-        }}
-        position="top-center"
-      />
-      {children}
-    </>
-  );
+export function Providers({
+  children,
+  correctedWord,
+}: {
+  children: React.ReactNode;
+  correctedWord: string;
+}) {
+  return <WordsProvider correctWord={correctedWord}>{children}</WordsProvider>;
 }

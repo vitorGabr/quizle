@@ -1,3 +1,6 @@
+import { globalStyles } from "@/theme/global-styles";
+import { dialog } from "@/theme/recipes/dialog";
+import { semanticTokens } from "@/theme/semantic-tokens";
 import { defineConfig } from "@pandacss/dev";
 
 export default defineConfig({
@@ -8,6 +11,13 @@ export default defineConfig({
   ],
   exclude: [],
   jsxFramework: "react",
-  hash: true,
+  outExtension: "js",
+  globalCss: globalStyles,
+  theme: {
+    semanticTokens,
+    slotRecipes: {
+      dialog,
+    },
+  },
   outdir: "styled-system",
 });
