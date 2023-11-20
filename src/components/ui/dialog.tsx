@@ -1,33 +1,33 @@
-import { createStyleContext } from "@/lib/style-context";
-import * as Ark from "@ark-ui/react/dialog";
-import { styled } from "styled-system/jsx";
-import { dialog, type DialogVariantProps } from "styled-system/recipes";
+import { createStyleContext } from '@/lib/style-context';
+import * as Ark from '@ark-ui/react/dialog';
+import { styled } from 'styled-system/jsx';
+import { dialog, type DialogVariantProps } from 'styled-system/recipes';
 
 const { withProvider, withContext } = createStyleContext(dialog);
 
-export * from "@ark-ui/react/dialog";
+export * from '@ark-ui/react/dialog';
 export type DialogProps = Ark.DialogProps & DialogVariantProps;
 
 const DialogRoot = withProvider(styled(Ark.Dialog.Root));
 export const DialogBackdrop = withContext(
   styled(Ark.Dialog.Backdrop),
-  "backdrop"
+  'backdrop'
 );
 export const DialogCloseTrigger = withContext(
   styled(Ark.Dialog.CloseTrigger),
-  "closeTrigger"
+  'closeTrigger'
 );
-export const DialogContent = withContext(styled(Ark.Dialog.Content), "content");
+export const DialogContent = withContext(styled(Ark.Dialog.Content), 'content');
 export const DialogDescription = withContext(
   styled(Ark.Dialog.Description),
-  "description"
+  'description'
 );
 export const DialogPositioner = withContext(
   styled(Ark.Dialog.Positioner),
-  "positioner"
+  'positioner'
 );
-export const DialogTitle = withContext(styled(Ark.Dialog.Title), "title");
-export const DialogTrigger = withContext(styled(Ark.Dialog.Trigger), "trigger");
+export const DialogTitle = withContext(styled(Ark.Dialog.Title), 'title');
+export const DialogTrigger = withContext(styled(Ark.Dialog.Trigger), 'trigger');
 
 export const Dialog = Object.assign(DialogRoot, {
   Root: DialogRoot,
@@ -37,5 +37,5 @@ export const Dialog = Object.assign(DialogRoot, {
   Content: DialogContent,
   Description: DialogDescription,
   Title: DialogTitle,
-  Trigger: DialogTrigger,
+  Trigger: DialogTrigger
 });

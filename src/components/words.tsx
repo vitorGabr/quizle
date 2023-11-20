@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Center, Flex, Stack } from "styled-system/jsx";
-import { useWords } from "@/contexts/word-context";
-import { Letter } from "./ui/letter";
+import { Center, Flex, Stack } from 'styled-system/jsx';
+import { useWords } from '@/contexts/word-context';
+import { Letter } from './ui/letter';
 
 export function Words() {
   const { state, dispatch } = useWords();
@@ -10,15 +10,15 @@ export function Words() {
 
   return (
     <Center w="full" flex="1">
-      <Stack gap={"1.5"}>
+      <Stack gap={'1.5'}>
         {words.map((row, rowIdx) => {
           return (
-            <Flex gap={"1.5"} key={Math.random()}>
+            <Flex gap={'1.5'} key={Math.random()}>
               {row.map((word, colIdx) => {
                 const selected =
                   rowIdx === currentPosition.row &&
                   colIdx === currentPosition.col
-                    ? "true"
+                    ? 'true'
                     : null;
                 return (
                   <Letter
@@ -27,8 +27,8 @@ export function Words() {
                     data-selected={selected}
                     onClick={() => {
                       dispatch({
-                        type: "SET_CURRENT_POSITION",
-                        payload: { row: currentPosition.row, col: colIdx },
+                        type: 'SET_CURRENT_POSITION',
+                        payload: { row: currentPosition.row, col: colIdx }
                       });
                     }}
                   >

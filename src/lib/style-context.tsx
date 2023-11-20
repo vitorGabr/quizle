@@ -3,8 +3,8 @@ import {
   forwardRef,
   useContext,
   type ComponentProps,
-  type ElementType,
-} from "react";
+  type ElementType
+} from 'react';
 
 type Props = Record<string, unknown>;
 type Recipe = {
@@ -26,7 +26,7 @@ export interface StyledContextProvider<
   ): JSX.Element;
 }
 
-const cx = (...args: (string | undefined)[]) => args.filter(Boolean).join(" ");
+const cx = (...args: (string | undefined)[]) => args.filter(Boolean).join(' ');
 
 export const createStyleContext = <R extends Recipe>(recipe: R) => {
   const StyleContext = createContext<SlotRecipe<R> | null>(null);
@@ -44,14 +44,14 @@ export const createStyleContext = <R extends Recipe>(recipe: R) => {
             <Component
               ref={ref}
               {...localProps}
-              className={cx(slotRecipe[slot ?? ""], localProps.className)}
+              className={cx(slotRecipe[slot ?? ''], localProps.className)}
             />
           </StyleContext.Provider>
         );
       }
     );
     // @ts-expect-error JSX.IntrinsicElements do not have a displayName but Function and Class components do
-    Comp.displayName = Component.displayName || Component.name || "Component";
+    Comp.displayName = Component.displayName || Component.name || 'Component';
     return Comp as unknown as StyledContextProvider<T, R>;
   };
 
@@ -63,18 +63,18 @@ export const createStyleContext = <R extends Recipe>(recipe: R) => {
         <Component
           ref={ref}
           {...props}
-          className={cx(slotRecipe?.[slot ?? ""], props.className)}
+          className={cx(slotRecipe?.[slot ?? ''], props.className)}
         />
       );
     });
     // @ts-expect-error JSX.IntrinsicElements do not have a displayName but Function and Class components do
-    Comp.displayName = Component.displayName || Component.name || "Component";
+    Comp.displayName = Component.displayName || Component.name || 'Component';
 
     return Comp as unknown as T;
   };
 
   return {
     withProvider,
-    withContext,
+    withContext
   };
 };

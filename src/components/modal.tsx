@@ -1,7 +1,7 @@
-import { Portal } from "@ark-ui/react";
-import { XIcon } from "lucide-react";
-import { Stack, styled } from "styled-system/jsx";
-import { Dialog, DialogProps } from "./ui/dialog";
+import { Portal } from '@ark-ui/react';
+import { XIcon } from 'lucide-react';
+import { Stack, styled } from 'styled-system/jsx';
+import { Dialog, DialogProps } from './ui/dialog';
 
 export const Demo = (props: DialogProps) => {
   return (

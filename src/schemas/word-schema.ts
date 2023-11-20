@@ -1,27 +1,27 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const wordStatus = z.enum([
-  "correct",
-  "incorrect",
-  "unanswered",
-  "disabled",
+  'correct',
+  'incorrect',
+  'unanswered',
+  'disabled'
 ]);
 
-export const gameStatus = z.enum(["win", "lose", "playing"]);
+export const gameStatus = z.enum(['win', 'lose', 'playing']);
 
 export const word = z.object({
   letter: z.string(),
-  status: wordStatus,
+  status: wordStatus
 });
 
 export const gameState = z.object({
   words: z.array(z.array(word)),
   currentPosition: z.object({
     row: z.number(),
-    col: z.number(),
+    col: z.number()
   }),
   letters: z.array(word),
-  gameStatus,
+  gameStatus
 });
 
 export const wordDictionary = z.record(z.string(), gameState);

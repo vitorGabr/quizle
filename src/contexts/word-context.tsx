@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { Demo } from "@/components/modal";
+import { Demo } from '@/components/modal';
 import {
   GameState,
   GameStatus,
   LetterStatus,
-  Word,
-} from "@/schemas/word-schema";
-import { initGameState, validateWord } from "@/utils/game-utils";
-import { setLocalStorage } from "@/utils/local-storage";
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+  Word
+} from '@/schemas/word-schema';
+import { initGameState, validateWord } from '@/utils/game-utils';
+import { setLocalStorage } from '@/utils/local-storage';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
 type Action =
-  | { type: "SET_GAME_STATUS"; payload: GameStatus }
-  | { type: "SET_LETTERS"; payload: Word[] }
-  | { type: "SET_CURRENT_POSITION"; payload: GameState["currentPosition"] }
-  | { type: "SET_WORDS"; payload: Word[][] };
+  | { type: 'SET_GAME_STATUS'; payload: GameStatus }
+  | { type: 'SET_LETTERS'; payload: Word[] }
+  | { type: 'SET_CURRENT_POSITION'; payload: GameState['currentPosition'] }
+  | { type: 'SET_WORDS'; payload: Word[][] };
 
 const STATUS_ORDER: LetterStatus[] = [
-  "disabled",
-  "incorrect",
-  "unanswered",
-  "correct",
+  'disabled',
+  'incorrect',
+  'unanswered',
+  'correct'
 ];
 
 const WordsContext = createContext<{
@@ -31,18 +31,18 @@ const WordsContext = createContext<{
 }>({
   state: {} as GameState,
   dispatch: () => null,
-  handleKeyPress: () => null,
+  handleKeyPress: () => null
 });
 
 function wordsReducer(state: GameState, action: Action): GameState {
   switch (action.type) {
-    case "SET_GAME_STATUS":
+    case 'SET_GAME_STATUS':
       return { ...state, gameStatus: action.payload };
-    case "SET_LETTERS":
+    case 'SET_LETTERS':
       return { ...state, letters: action.payload };
-    case "SET_CURRENT_POSITION":
+    case 'SET_CURRENT_POSITION':
       return { ...state, currentPosition: action.payload };
-    case "SET_WORDS":
+    case 'SET_WORDS':
       return { ...state, words: action.payload };
     default:
       return state;
@@ -51,7 +51,7 @@ function wordsReducer(state: GameState, action: Action): GameState {
 
 export function WordsProvider({
   children,
-  correctWord,
+  correctWord
 }: {
   children: React.ReactNode;
   correctWord: string;
@@ -59,41 +59,41 @@ export function WordsProvider({
   const maxWordLength = correctWord.length;
 
   const [state, dispatch] = useReducer(wordsReducer, {
-    gameStatus: "playing",
+    gameStatus: 'playing',
     letters: [],
     currentPosition: { row: 0, col: 0 },
     words: Array.from(
       { length: 6 },
       () =>
         Array.from({ length: maxWordLength }, () => ({
-          letter: "",
-          status: "disabled",
+          letter: '',
+          status: 'disabled'
         })) as Word[]
-    ),
+    )
   });
 
   const handleKeyPress = (event: KeyboardEvent | { key: string }) => {
     const { currentPosition, letters } = state;
 
-    let newWords = [...state.words];
+    const newWords = [...state.words];
     let gameStatus = state.gameStatus;
 
-    if (gameStatus !== "playing") return;
+    if (gameStatus !== 'playing') return;
 
-    if (event.key === "Backspace") {
+    if (event.key === 'Backspace') {
       newWords[currentPosition.row][currentPosition.col] = {
-        letter: "",
-        status: "disabled",
+        letter: '',
+        status: 'disabled'
       };
-      changePosition("prev-col");
+      changePosition('prev-col');
     }
 
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       const wordValidation = validateWord(
         newWords[currentPosition.row].map((l) => l.letter),
         correctWord
       );
-      let newLetters = [...letters] as Word[];
+      const newLetters = [...letters] as Word[];
 
       wordValidation.word.forEach((l) => {
         const existingLetterIndex = newLetters.findIndex(
@@ -115,80 +115,80 @@ export function WordsProvider({
       });
 
       newWords[currentPosition.row] = wordValidation.word;
-      gameStatus = wordValidation.win ? "win" : "playing";
+      gameStatus = wordValidation.win ? 'win' : 'playing';
 
-      if (state.currentPosition.row === 5 && gameStatus === "playing") {
-        gameStatus = "lose";
+      if (state.currentPosition.row === 5 && gameStatus === 'playing') {
+        gameStatus = 'lose';
       }
-      const position = changePosition("next-row");
+      const position = changePosition('next-row');
       setLocalStorage({
         data: {
           words: newWords,
           gameStatus,
           letters: newLetters,
-          currentPosition: position,
+          currentPosition: position
         },
-        date: new Date(),
+        date: new Date()
       });
       dispatch({
-        type: "SET_LETTERS",
-        payload: newLetters,
+        type: 'SET_LETTERS',
+        payload: newLetters
       });
     }
 
-    if (["ArrowLeft", "ArrowRight"].includes(event.key)) {
-      changePosition(event.key === "ArrowLeft" ? "prev-col" : "next-col");
+    if (['ArrowLeft', 'ArrowRight'].includes(event.key)) {
+      changePosition(event.key === 'ArrowLeft' ? 'prev-col' : 'next-col');
     }
 
     if (/^[a-zA-Z]$/.test(event.key)) {
       newWords[currentPosition.row][currentPosition.col] = {
         letter: event.key,
-        status: "disabled",
+        status: 'disabled'
       };
-      changePosition("next-col");
+      changePosition('next-col');
     }
 
     dispatch({
-      type: "SET_WORDS",
-      payload: newWords,
+      type: 'SET_WORDS',
+      payload: newWords
     });
     dispatch({
-      type: "SET_GAME_STATUS",
-      payload: gameStatus,
+      type: 'SET_GAME_STATUS',
+      payload: gameStatus
     });
   };
 
-  function changePosition(type: "next-col" | "prev-col" | "next-row") {
+  function changePosition(type: 'next-col' | 'prev-col' | 'next-row') {
     let position = state.currentPosition;
     switch (type) {
-      case "next-col":
+      case 'next-col':
         if (state.currentPosition.col < maxWordLength - 1) {
           position = {
             ...state.currentPosition,
-            col: state.currentPosition.col + 1,
+            col: state.currentPosition.col + 1
           };
         }
         break;
-      case "prev-col":
+      case 'prev-col':
         if (state.currentPosition.col > 0) {
           position = {
             ...state.currentPosition,
-            col: state.currentPosition.col - 1,
+            col: state.currentPosition.col - 1
           };
         }
         break;
-      case "next-row":
+      case 'next-row':
         if (state.currentPosition.row < 5) {
           position = {
             col: 0,
-            row: state.currentPosition.row + 1,
+            row: state.currentPosition.row + 1
           };
         }
         break;
     }
     dispatch({
-      type: "SET_CURRENT_POSITION",
-      payload: position,
+      type: 'SET_CURRENT_POSITION',
+      payload: position
     });
     return position;
   }
@@ -197,27 +197,27 @@ export function WordsProvider({
     const data = initGameState();
     if (!data) return;
     dispatch({
-      type: "SET_WORDS",
-      payload: data.words,
+      type: 'SET_WORDS',
+      payload: data.words
     });
     dispatch({
-      type: "SET_LETTERS",
-      payload: data.letters,
+      type: 'SET_LETTERS',
+      payload: data.letters
     });
     dispatch({
-      type: "SET_CURRENT_POSITION",
-      payload: data.currentPosition,
+      type: 'SET_CURRENT_POSITION',
+      payload: data.currentPosition
     });
     dispatch({
-      type: "SET_GAME_STATUS",
-      payload: data.gameStatus,
+      type: 'SET_GAME_STATUS',
+      payload: data.gameStatus
     });
   }, []);
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener('keydown', handleKeyPress);
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener('keydown', handleKeyPress);
     };
   }, [state, dispatch]);
 
@@ -225,7 +225,7 @@ export function WordsProvider({
     <WordsContext.Provider value={{ state, dispatch, handleKeyPress }}>
       <>
         {children}
-        <Demo open={state.gameStatus !== "playing"} />
+        <Demo open={state.gameStatus !== 'playing'} />
       </>
     </WordsContext.Provider>
   );
@@ -234,7 +234,7 @@ export function WordsProvider({
 export const useWords = () => {
   const context = useContext(WordsContext);
   if (!context) {
-    throw new Error("useWords must be used within a WordsProvider");
+    throw new Error('useWords must be used within a WordsProvider');
   }
   return context;
 };

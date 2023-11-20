@@ -1,12 +1,12 @@
 import {
   type GameState,
   type WordDictionary,
-  wordDictionary,
-} from "@/schemas/word-schema";
+  wordDictionary
+} from '@/schemas/word-schema';
 
 export function getLocalStorage(date: Date) {
   const value = wordDictionary.safeParse(
-    JSON.parse(localStorage.getItem("words")!)
+    JSON.parse(localStorage.getItem('words')!)
   );
   if (value.success) {
     return value.data[date.toISOString().slice(0, 10)];
@@ -16,16 +16,16 @@ export function getLocalStorage(date: Date) {
 
 export function setLocalStorage({
   data,
-  date,
+  date
 }: {
   data: GameState;
   date: Date;
 }): void {
-  const storage = localStorage.getItem("words");
+  const storage = localStorage.getItem('words');
   let value = {} as WordDictionary;
   if (storage !== null) {
     value = wordDictionary.parse(JSON.parse(storage));
   }
   value[date.toISOString().slice(0, 10)] = data;
-  localStorage.setItem("words", JSON.stringify(value));
+  localStorage.setItem('words', JSON.stringify(value));
 }

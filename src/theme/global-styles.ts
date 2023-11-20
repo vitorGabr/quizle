@@ -1,13 +1,13 @@
-import { defineGlobalStyles } from "@pandacss/dev";
+import { defineGlobalStyles } from '@pandacss/dev';
 
 export const globalStyles = defineGlobalStyles({
-  "html, body": {
+  'html, body': {
     margin: 0,
     padding: 0,
-    boxSizing: "border-box",
+    boxSizing: 'border-box'
   },
   body: {
-    backgroundColor: "black",
-    color: "white",
-  },
+    backgroundColor: 'black',
+    color: 'white'
+  }
 });
