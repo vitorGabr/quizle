@@ -12,7 +12,7 @@ export default function Home() {
       justifyContent={['center']}
       alignItems={['center']}
       gap={'10'}
-      bgColor={'#2c2c2c'}
+      bgColor="neutral.950"
     >
       <Navbar />
       <Words />

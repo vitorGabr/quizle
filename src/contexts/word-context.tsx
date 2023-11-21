@@ -89,10 +89,10 @@ export function WordsProvider({
     }
 
     if (event.key === 'Enter') {
-      const wordValidation = validateWord(
-        newWords[currentPosition.row].map((l) => l.letter),
-        correctWord
-      );
+      const typedWord = newWords[currentPosition.row].map((l) => l.letter);
+      if (typedWord.join('').length < maxWordLength) return;
+
+      const wordValidation = validateWord(typedWord, correctWord);
       const newLetters = [...letters] as Word[];
 
       wordValidation.word.forEach((l) => {

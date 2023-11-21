@@ -7,7 +7,6 @@ export const globalStyles = defineGlobalStyles({
     boxSizing: 'border-box'
   },
   body: {
-    backgroundColor: 'black',
-    color: 'white'
+    bg: '{colors.gray.1}'
   }
 });
