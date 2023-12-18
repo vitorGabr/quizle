@@ -9,10 +9,10 @@ export const Key = styled(Center, {
     textTransform: 'uppercase',
     fontWeight: 'bold',
     _selected: {
-      bgColor: 'neutral.700'
+      bgColor: 'bg.muted'
     },
     _hover: {
-      bgColor: 'neutral.700'
+      bgColor: 'bg.subtle'
     },
     cursor: 'pointer',
     userSelect: 'none'
@@ -52,7 +52,7 @@ export const Key = styled(Center, {
         }
       },
       disabled: {
-        bgColor: 'neutral.700'
+        bgColor: 'bg.emphasized'
       }
     }
   },

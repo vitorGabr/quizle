@@ -1,6 +1,6 @@
 'use client';
 
-import { Demo } from '@/components/modal';
+import { GameResult } from '@/components/game-result';
 import {
   GameState,
   GameStatus,
@@ -223,10 +223,8 @@ export function WordsProvider({
 
   return (
     <WordsContext.Provider value={{ state, dispatch, handleKeyPress }}>
-      <>
-        {children}
-        <Demo open={state.gameStatus !== 'playing'} />
-      </>
+      {children}
+      <GameResult open={state.gameStatus !== 'playing'} />
     </WordsContext.Provider>
   );
 }

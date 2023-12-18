@@ -23,7 +23,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
   return (
     <html lang="pt-BR">
-      <body className={`${body.variable}`}>
+      <body className={`${body.variable} dark`}>
         <Providers correctedWord={word}>{children}</Providers>
       </body>
     </html>

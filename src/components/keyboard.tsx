@@ -4,6 +4,7 @@ import { useWords } from '@/contexts/word-context';
 import { Center, Flex, Stack } from 'styled-system/jsx';
 import { match } from 'ts-pattern';
 import { Key } from './ui/key';
+
 const keyboard = [
   ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
   ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'Backspace'],
@@ -11,8 +12,8 @@ const keyboard = [
 ];
 
 export function Keyboard() {
+  
   const { handleKeyPress, state } = useWords();
-
   const { letters } = state;
 
   return (

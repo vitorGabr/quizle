@@ -5,7 +5,7 @@ import { SystemStyleObject } from 'styled-system/types';
 export const Letter = styled(Center, {
   base: {
     borderWidth: '2px',
-    borderColor: 'neutral.700',
+    borderColor: 'bg.muted',
     bgColor: 'transparent',
     rounded: 'xl',
     w: '12',
@@ -15,7 +15,7 @@ export const Letter = styled(Center, {
     fontWeight: 'bold',
     _selected: {
       borderWidth: '2px',
-      borderColor: 'neutral.200'
+      borderColor: 'bg.muted'
     },
     cursor: 'pointer',
     userSelect: 'none'

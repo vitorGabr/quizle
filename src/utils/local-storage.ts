@@ -29,3 +29,11 @@ export function setLocalStorage({
   value[date.toISOString().slice(0, 10)] = data;
   localStorage.setItem('words', JSON.stringify(value));
 }
+
+export function getHistory(): WordDictionary {
+  const storage = localStorage.getItem('words');
+  if (storage !== null) {
+    return wordDictionary.parse(JSON.parse(storage));
+  }
+  return {};
+}

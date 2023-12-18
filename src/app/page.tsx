@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/navbar';
+import { Navbar } from '@/components/layout/navbar';
 import { Words } from '@/components/words';
 import { Stack } from 'styled-system/jsx';
 import { Keyboard } from '@/components/keyboard';
@@ -12,7 +12,7 @@ export default function Home() {
       justifyContent={['center']}
       alignItems={['center']}
       gap={'10'}
-      bgColor="neutral.950"
+      bgColor="bg.surface"
     >
       <Navbar />
       <Words />
