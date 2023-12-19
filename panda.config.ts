@@ -8,7 +8,7 @@ export default defineConfig({
     createPreset({
       accentColor: 'violet',
       grayColor: 'neutral',
-      borderRadius: 'lg',
+      borderRadius: 'lg'
     })
   ],
   include: [
@@ -32,7 +32,9 @@ export default defineConfig({
     semanticTokens: {
       colors: {
         bg: {
-          surface: { value: { base: '{colors.white}', _dark: '{colors.gray.1}' } },
+          surface: {
+            value: { base: '{colors.white}', _dark: '{colors.gray.1}' }
+          }
         },
         letterStatus: {
           correct: {
@@ -46,7 +48,7 @@ export default defineConfig({
           }
         }
       }
-    },
+    }
   },
   outdir: 'styled-system'
 });
