@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { WordsProvider } from '@/contexts/word-context';
+import { WordsProvider } from "@/contexts/word-context";
 
 export function Providers({
-  children,
-  correctedWord
+	children,
+	correctedWord,
 }: {
-  children: React.ReactNode;
-  correctedWord: string;
+	children: React.ReactNode;
+	correctedWord: string;
 }) {
-  return <WordsProvider correctWord={correctedWord}>{children}</WordsProvider>;
+	return <WordsProvider correctWord={correctedWord}>{children}</WordsProvider>;
 }
