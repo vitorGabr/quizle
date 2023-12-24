@@ -4,7 +4,7 @@ import { getHistory } from "@/utils/local-storage";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import { Share2 } from "lucide-react";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Box, Flex, Grid, Stack } from "styled-system/jsx";
 import { Button } from "./ui/button";
@@ -215,7 +215,8 @@ function ShareButton({ words }: { words: Word[][] }) {
 					.join("");
 			})
 			.join(" ")}`;
-		navigator.clipboard.writeText(`"joguei quizle.com #${1} ${status}"`);
+
+		navigator.clipboard.writeText(`joguei quizle #${1} ${status}`);
 		toast.success("Texto copiado para área de transferência");
 	};
 
