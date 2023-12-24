@@ -94,8 +94,7 @@ export function WordsProvider({
 
 			const wordValidation = validateWord(typedWord, correctWord);
 			const newLetters = [...letters] as Word[];
-
-			for (const l of wordValidation.word) {
+			wordValidation.word.forEach((l) => {
 				const existingLetterIndex = newLetters.findIndex(
 					(lt) => lt.letter === l.letter,
 				);
@@ -112,7 +111,7 @@ export function WordsProvider({
 				) {
 					newLetters[existingLetterIndex] = l;
 				}
-			}
+			});
 
 			newWords[currentPosition.row] = wordValidation.word;
 			gameStatus = wordValidation.win ? "win" : "playing";
@@ -224,7 +223,7 @@ export function WordsProvider({
 	return (
 		<WordsContext.Provider value={{ state, dispatch, handleKeyPress }}>
 			{children}
-			<GameResult open={state.gameStatus !== "playing"} />
+			{state.gameStatus !== "playing" && <GameResult />}
 		</WordsContext.Provider>
 	);
 }
