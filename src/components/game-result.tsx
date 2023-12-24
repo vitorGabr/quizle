@@ -49,10 +49,7 @@ export function GameResult() {
 				),
 			),
 		},
-	] as {
-		label: string;
-		value: ReactNode;
-	}[];
+	];
 
 	return (
 		<Dialog.Root trapFocus={false} open={true} closeOnInteractOutside={false}>
