@@ -216,7 +216,7 @@ function ShareButton({ words }: { words: Word[][] }) {
 			})
 			.join(" ")}`;
 
-		navigator.clipboard.writeText(`joguei quizle #${1} ${status}`);
+		navigator.clipboard.writeText(`joguei quizle ${status}`);
 		toast.success("Texto copiado para área de transferência");
 	};
 
