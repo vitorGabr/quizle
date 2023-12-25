@@ -12,14 +12,12 @@
 	"dependencies": {
 		"@ark-ui/react": "^1.2.1",
 		"@supabase/ssr": "^0.0.10",
-		"dayjs": "^1.11.10",
-		"lucide-react": "^0.300.0",
+		"lucide-react": "^0.302.0",
 		"next": "14.0.4",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"sonner": "^1.2.4",
-		"ts-pattern": "^5.0.6",
-		"zod": "^3.22.4"
+		"valibot": "^0.24.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.4.1",

@@ -2,7 +2,6 @@
 
 import { useWords } from "@/contexts/word-context";
 import { Center, Flex, Stack } from "styled-system/jsx";
-import { match } from "ts-pattern";
 import { Key } from "./ui/key";
 
 const keyboard = [
@@ -49,10 +48,9 @@ export function Keyboard() {
 										}
 										onClick={() => handleKeyPress({ key })}
 									>
-										{match(k)
-											.with("backspace", () => "⌫")
-											.with("enter", () => "Enter")
-											.otherwise(() => key.toUpperCase())}
+										{k === "backspace" && "⌫"}
+										{k === "enter" && "Enter"}
+										{k !== "backspace" && k !== "enter" && key.toUpperCase()}
 									</Key>
 								);
 							})}

@@ -1,16 +1,12 @@
 import * as Dialog from "@/components/ui/dialog";
 import { Word } from "@/schemas/word-schema";
 import { getHistory } from "@/utils/local-storage";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
 import { Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Box, Flex, Grid, Stack } from "styled-system/jsx";
 import { Button } from "./ui/button";
 import { Text } from "./ui/text";
-
-dayjs.extend(duration);
 
 export function GameResult() {
 	const gameHistory = getHistory();
@@ -150,8 +146,11 @@ export function GameResult() {
 }
 
 function TimeRemaining() {
+	const now = new Date();
+	const midnight = new Date().setHours(24, 0, 0, 0);
+
 	const [hoursToNextWord, setHoursToNextWord] = useState(
-		dayjs().endOf("day").diff(dayjs(), "seconds"),
+		Math.floor((midnight - now.getTime()) / 1000),
 	);
 
 	const time = {
