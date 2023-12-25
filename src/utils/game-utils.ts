@@ -21,7 +21,7 @@ export function validateWord(
     };
   }
 
-  currentWordRow.forEach((letter, index) => {
+  for (const [index, letter] of currentWordRow.entries()) {
     const correctPositionCount = currentWordRow.filter(
       (l, i) => l === letter && l === correctWordLetters[i]
     ).length;
@@ -49,7 +49,7 @@ export function validateWord(
       letter,
       status: letterStatus,
     });
-  });
+  }
 
   return {
     word: wordValidation,

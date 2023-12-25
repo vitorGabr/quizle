@@ -1,32 +1,45 @@
-import "./globals.css";
+import { supabase } from "@/lib/supabase";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
-import { Providers } from "./providers";
-import { supabase } from "@/lib/supabase";
 import { PropsWithChildren } from "react";
+import "./globals.css";
+import { Providers } from "./providers";
 
 export const revalidate = false;
 export const metadata: Metadata = {
-  title: "Quizle",
-  description: "Sua dose diária de palavras",
+	title: "Quizle",
+	description: "Sua dose diária de palavras",
 };
 
-const body = Outfit({ subsets: ["latin"], variable: "--font-fallback" });
+const body = Outfit({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }: PropsWithChildren) {
-  const { data } = await supabase
-    .from("words")
-    .select("*")
-    .eq("date", new Date().toISOString())
-    .single();
+	const currentDate = new Date().toISOString();
 
-  const word = data?.word || "teste";
+	const { data } = await supabase
+		.from("words")
+		.select("*")
+		.eq("date", currentDate)
+		.limit(1)
+		.single();
 
-  return (
-    <html lang="pt-BR">
-      <body className={`${body.variable}`}>
-        <Providers correctedWord={word}>{children}</Providers>
-      </body>
-    </html>
-  );
+	let word = data?.word ?? "teste";
+
+	if (!data) {
+		const { data: lastWord } = await supabase
+			.from("words")
+			.select("*")
+			.order("date", { ascending: false })
+			.limit(1)
+			.single();
+		word = lastWord?.word ?? word;
+	}
+
+	return (
+		<html lang="pt-BR">
+			<body className={`${body.className} dark`}>
+				<Providers correctedWord={word}>{children}</Providers>
+			</body>
+		</html>
+	);
 }
