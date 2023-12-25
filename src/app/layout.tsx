@@ -44,9 +44,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 				<WordsProvider correctWord={word}>
 					{children}
 					<Toaster theme="dark" />
-					<SpeedInsights />
-					<Analytics />
 				</WordsProvider>
+				<SpeedInsights />
+				<Analytics />
 			</body>
 		</html>
 	);
