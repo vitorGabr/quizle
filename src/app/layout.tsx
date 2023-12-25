@@ -1,5 +1,5 @@
 import { WordsProvider } from "@/contexts/word-context";
-import { supabase } from "@/lib/supabase";
+import { createServerClient } from "@supabase/ssr";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 };
 
 const body = Outfit({ subsets: ["latin"] });
+
+const supabase = createServerClient(
+	process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+	process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
+	{
+		cookies: {},
+	},
+);
 
 export default async function RootLayout({ children }: PropsWithChildren) {
 	const currentDate = new Date().toISOString();
