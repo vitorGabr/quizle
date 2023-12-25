@@ -4,7 +4,7 @@ import { getHistory } from "@/utils/local-storage";
 import { Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Box, Center, Flex, Grid, Stack } from "styled-system/jsx";
+import { Box, Flex, Grid, Stack } from "styled-system/jsx";
 import { Button } from "./ui/button";
 import { Text } from "./ui/text";
 
