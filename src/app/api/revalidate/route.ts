@@ -17,6 +17,6 @@ export async function GET() {
   return Response.json({
     revalidated: false,
     now: Date.now(),
-    message: "Missing path to revalidate",
+    message: "Missing or invalid authorization header",
   });
 }
