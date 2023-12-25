@@ -15,7 +15,7 @@ export const Letter = styled(Center, {
 		fontWeight: "bold",
 		_selected: {
 			borderWidth: "2px",
-			borderColor: "bg.muted",
+			borderColor: "fg.subtle",
 		},
 		cursor: "pointer",
 		userSelect: "none",
