@@ -29,6 +29,22 @@ export function GameResult() {
 				return 0;
 			}, 0),
 		},
+		{
+			label: "melhor sequência",
+			value: Math.max(
+				...winGames.reduce(
+					(acc, item) => {
+						if (item.gameStatus === "win") {
+							acc[acc.length - 1] += 1;
+						} else {
+							acc.push(0);
+						}
+						return acc;
+					},
+					[0],
+				),
+			),
+		},
 	];
 
 	return (
