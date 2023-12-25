@@ -6,8 +6,9 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-	title: "Quizle",
-	description: "Sua dose diária de palavras",
+	title: "Quizle - Sua dose diária de palavras",
+	description:
+		"Aprenda novas palavras todos os dias com o Quizle. Amplie seu vocabulário e melhore suas habilidades linguísticas.",
 };
 
 const body = Outfit({ subsets: ["latin"] });
