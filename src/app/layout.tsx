@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 		.gte("date", currentDate)
 		.limit(1)
 		.single();
-	const word = data?.word ?? "teste";
+	const word = (data?.word ?? "teste").toLowerCase();
 
 	return (
 		<html lang="pt-BR">
