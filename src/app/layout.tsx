@@ -18,25 +18,13 @@ const body = Outfit({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }: PropsWithChildren) {
 	const currentDate = new Date().toISOString();
-
 	const { data } = await supabase
 		.from("words")
-		.select("*")
-		.eq("date", currentDate)
+		.select("word")
+		.gte("date", currentDate)
 		.limit(1)
 		.single();
-
-	let word = data?.word ?? "teste";
-
-	if (!data) {
-		const { data: lastWord } = await supabase
-			.from("words")
-			.select("*")
-			.order("date", { ascending: false })
-			.limit(1)
-			.single();
-		word = lastWord?.word ?? word;
-	}
+	const word = data?.word ?? "teste";
 
 	return (
 		<html lang="pt-BR">
