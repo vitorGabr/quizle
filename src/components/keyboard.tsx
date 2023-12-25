@@ -38,14 +38,15 @@ export function Keyboard() {
 								const status = letters.find(
 									(word) => word.letter === k,
 								)?.status;
+								const type = ["backspace", "enter"].includes(k)
+									? "other"
+									: "default";
 
 								return (
 									<Key
 										key={key}
 										status={status}
-										type={
-											["backspace", "enter"].includes(k) ? "other" : "default"
-										}
+										type={type}
 										onClick={() => handleKeyPress({ key })}
 									>
 										{k === "backspace" && "⌫"}

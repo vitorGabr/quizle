@@ -4,7 +4,7 @@ import { getHistory } from "@/utils/local-storage";
 import { Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Box, Flex, Grid, Stack } from "styled-system/jsx";
+import { Box, Center, Flex, Grid, Stack } from "styled-system/jsx";
 import { Button } from "./ui/button";
 import { Text } from "./ui/text";
 
@@ -66,9 +66,13 @@ export function GameResult() {
 						}}
 					>
 						<Stack alignItems="center" gap="6">
-							<Text fontSize="2xl" fontWeight="bold">
-								progresso
-							</Text>
+							<Stack alignItems="center">
+								<Text fontSize="lg" fontWeight="semibold">
+									{lastWord.gameStatus === "win"
+										? "Parabéns você acertou! 🎉"
+										: "Você errou, tente novamente! 😢"}
+								</Text>
+							</Stack>
 							<Grid columns={4} gap="3">
 								{data.map((item) => (
 									<Stack
