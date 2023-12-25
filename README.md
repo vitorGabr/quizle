@@ -1,6 +1,6 @@
 # Quizle
 
-![Quizle](https://ibb.co/cXRmHw5)
+![Quizle](https://ik.imagekit.io/91phxemhf/Captura%20de%20tela%202023-12-25%20185059.png?updatedAt=1703541161243)
 
 Quizle é um jogo inspirado no popular jogo Wordle, construído com Next.js 14, Valibot e Supabase.
 
@@ -16,20 +16,19 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 Clone o projeto e acesse a pasta do mesmo.
 
-\`\`\`bash
 $ git clone https://github.com/vitorGabr/quizle
+
 $ cd quizle
-\`\`\`
+
 
 Para iniciá-lo, siga os passos abaixo:
 
-\`\`\`bash
 # Instalar as dependências
 $ pnpm install
 
 # Iniciar o projeto
 $ pnpm run dev
-\`\`\`
+
 
 O app estará disponível no seu browser pelo endereço http://localhost:3000.
 
@@ -40,7 +39,3 @@ Você pode acessar o Quizle em funcionamento através [deste link](https://quizl
 ## Contribuições
 
 Contribuições são sempre bem-vindas!
-
-## Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
