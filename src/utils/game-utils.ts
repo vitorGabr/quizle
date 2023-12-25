@@ -25,7 +25,6 @@ export function validateWord(
     const correctPositionCount = currentWordRow.filter(
       (l, i) => l === letter && l === correctWordLetters[i]
     ).length;
-
     const letterRepetitions = correctWordLetters.filter(
       (l) => l === letter
     ).length;
@@ -45,6 +44,7 @@ export function validateWord(
     if (letter === correctWord[index]) {
       letterStatus = "correct";
     }
+
     wordValidation.push({
       letter,
       status: letterStatus,

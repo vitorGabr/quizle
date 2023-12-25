@@ -5,7 +5,6 @@ import { PropsWithChildren } from "react";
 import "./globals.css";
 import { Providers } from "./providers";
 
-export const revalidate = false;
 export const metadata: Metadata = {
 	title: "Quizle",
 	description: "Sua dose diária de palavras",
