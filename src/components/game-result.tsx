@@ -66,13 +66,11 @@ export function GameResult() {
 						}}
 					>
 						<Stack alignItems="center" gap="6">
-							<Stack alignItems="center">
-								<Text fontSize="lg" fontWeight="semibold">
-									{lastWord.gameStatus === "win"
-										? "Parabéns você acertou! 🎉"
-										: "Você errou, tente novamente! 😢"}
-								</Text>
-							</Stack>
+							<Text fontSize="lg" fontWeight="semibold">
+								{lastWord.gameStatus === "win"
+									? "Parabéns você acertou! 🎉"
+									: "Você errou, tente novamente! 😢"}
+							</Text>
 							<Grid columns={4} gap="3">
 								{data.map((item) => (
 									<Stack
