@@ -1,9 +1,11 @@
+import { WordsProvider } from "@/contexts/word-context";
 import { supabase } from "@/lib/supabase";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { PropsWithChildren } from "react";
+import { Toaster } from "sonner";
 import "./globals.css";
-import { Providers } from "./providers";
 
 export const metadata: Metadata = {
 	title: "Quizle - Sua dose diária de palavras",
@@ -38,7 +40,11 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 	return (
 		<html lang="pt-BR">
 			<body className={`${body.className} dark`}>
-				<Providers correctedWord={word}>{children}</Providers>
+				<WordsProvider correctWord={word}>
+					{children}
+					<Toaster theme="dark" />
+				</WordsProvider>
+				<Analytics />
 			</body>
 		</html>
 	);
