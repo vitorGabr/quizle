@@ -18,7 +18,7 @@ export async function GET() {
     const gptResponse = await openai.completions.create({
       model: "text-davinci-002",
       prompt:
-        "Gere sete palavras para um jogo no estilo Wordle com os temas nerd, programação e geek. Palavras: Código, Byte, Algoritmo, Console, Hackathon, Geek, Framework. Separe as palavras por vírgulas.",
+        "Gere sete palavras para um jogo no estilo Wordle com os temas nerd, programação e geek. Separe as palavras por vírgulas, apenas em uma única string",
       max_tokens: 1,
     });
     const words = gptResponse.choices[0].text
