@@ -1,54 +1,52 @@
-import { defineConfig } from '@pandacss/dev';
-import { createPreset } from '@park-ui/panda-preset';
+import { defineConfig } from "@pandacss/dev";
+import { createPreset } from "@park-ui/panda-preset";
 
 export default defineConfig({
   preflight: true,
   presets: [
-    '@pandacss/preset-base',
+    "@pandacss/preset-base",
     createPreset({
-      accentColor: 'violet',
-      grayColor: 'neutral',
-      borderRadius: 'lg'
-    })
+      accentColor: "violet",
+      grayColor: "neutral",
+      borderRadius: "lg",
+    }),
   ],
   include: [
-    './src/components/**/*.{ts,tsx,js,jsx}',
-    './src/app/**/*.{ts,tsx,js,jsx}'
+    "./src/components/**/*.{ts,tsx,js,jsx}",
+    "./src/app/**/*.{ts,tsx,js,jsx}",
   ],
   exclude: [],
-  jsxFramework: 'react',
-  outExtension: 'js',
+  jsxFramework: "react",
+  outExtension: "js",
   globalCss: {
-    'html, body': {
+    "html, body": {
       margin: 0,
       padding: 0,
-      boxSizing: 'border-box'
+      boxSizing: "border-box",
     },
-    body: {
-      bg: '{colors.gray.1}'
-    }
   },
   theme: {
     semanticTokens: {
       colors: {
         bg: {
           surface: {
-            value: { base: '{colors.white}', _dark: '{colors.gray.1}' }
-          }
+            value: { base: "{colors.white}", _dark: "{colors.gray.1}" },
+          },
         },
         letterStatus: {
           correct: {
-            value: '#34e54d'
+            value: "#34e54d",
           },
           incorrect: {
-            value: { base: '{colors.white}', _dark: '{colors.gray.3}' }
+            value: { base: "{colors.white}", _dark: "{colors.gray.3}" },
           },
           unanswered: {
-            value: '#fdf00e'
-          }
-        }
-      }
-    }
+            value: "#fdf00e",
+          },
+        },
+      },
+    },
   },
-  outdir: 'styled-system'
+  outdir: "styled-system",
+  hash: true,
 });
