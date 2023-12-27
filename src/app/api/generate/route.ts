@@ -1,5 +1,4 @@
 import { supabase } from "@/lib/supabase";
-import dayjs from "dayjs";
 import { OpenAI } from "openai";
 
 export async function GET() {
@@ -25,10 +24,10 @@ export async function GET() {
       .replace(/ /g, "")
       .split(",")
       .map((word, index) => {
-        const date = dayjs(data?.date)
-          .add(index + 1, "day")
-          .format("YYYY-MM-DD");
-        return { word, date };
+        const date = new Date(data?.date);
+        date.setDate(date.getDate() + index + 1);
+        const formattedDate = date.toISOString().split("T")[0];
+        return { word, date: formattedDate };
       });
     const { error } = await supabase.from("words").insert(words);
     if (error) throw error;
