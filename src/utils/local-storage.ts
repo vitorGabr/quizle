@@ -10,7 +10,10 @@ export function getLocalStorage(date: Date) {
     wordDictionary,
     JSON.parse(localStorage.getItem("words") ?? "{}")
   );
-  if (value.success) {
+  if (
+    value.success &&
+    value.output.hasOwnProperty(date.toISOString().slice(0, 10))
+  ) {
     return value.output[date.toISOString().slice(0, 10)];
   }
   return null;
