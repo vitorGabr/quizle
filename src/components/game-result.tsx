@@ -1,6 +1,7 @@
 import * as Dialog from "@/components/ui/dialog";
 import { Word } from "@/schemas/word-schema";
 import { getHistory } from "@/utils/local-storage";
+import dayjs from "dayjs";
 import { Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -148,11 +149,8 @@ export function GameResult() {
 }
 
 function TimeRemaining() {
-	const now = new Date();
-	const midnight = new Date().setHours(24, 0, 0, 0);
-
 	const [hoursToNextWord, setHoursToNextWord] = useState(
-		Math.floor((midnight - now.getTime()) / 1000),
+		dayjs().endOf("day").diff(dayjs(), "second"),
 	);
 
 	const time = {

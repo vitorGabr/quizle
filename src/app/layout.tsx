@@ -3,12 +3,17 @@ import { WordsProvider } from "@/contexts/word-context";
 import { supabase } from "@/lib/supabase";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { PropsWithChildren } from "react";
 import { Toaster } from "sonner";
 import { stack } from "styled-system/patterns";
 import "./globals.css";
+
+dayjs.extend(timezone);
+dayjs.tz.setDefault("America/Sao_Paulo");
 
 export const metadata: Metadata = {
 	title: "Quizle - Sua dose diária de palavras",
@@ -19,7 +24,8 @@ export const metadata: Metadata = {
 const body = Outfit({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }: PropsWithChildren) {
-	const currentDate = new Date().toISOString();
+	const currentDate = dayjs().format("YYYY-MM-DD");
+
 	const { data } = await supabase
 		.from("words")
 		.select("word")
