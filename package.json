@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"prepare": "panda codegen",
-		"dev": "next dev",
+		"dev": "next dev --turbo",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
@@ -16,7 +16,7 @@
 		"@vercel/speed-insights": "^1.0.2",
 		"dayjs": "^1.11.10",
 		"lucide-react": "^0.303.0",
-		"next": "14.0.5-canary.34",
+		"next": "14.0.5-canary.35",
 		"openai": "^4.24.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
