@@ -7,8 +7,7 @@ export const config = {
 
 export default async function middleware(request: NextRequest) {
   const authorization = request.headers.get("Authorization");
-
-  if (authorization !== process.env.AUTHORIZATION) {
+  if (authorization !== `Bearer ${process.env.CRON_SECRET}`) {
     return Response.json(
       { success: false, message: "authentication failed" },
       { status: 401 }

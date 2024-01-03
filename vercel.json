@@ -1,0 +1,12 @@
+{
+	"crons": [
+		{
+			"path": "/api/revalidate",
+			"schedule": "0 3 * * *"
+		},
+		{
+			"path": "https://quizle.vercel.app/",
+			"schedule": "1 3 * * *"
+		}
+	]
+}
